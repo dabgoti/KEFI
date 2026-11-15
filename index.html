@@ -1,0 +1,1034 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>KEFI® — Intelligence, Reimagined.</title>
+  <meta name="description" content="KEFI is an independent AI-powered software project building a new perspective on intelligent technology.">
+  <meta name="theme-color" content="#08080b">
+  <meta property="og:title" content="KEFI — Intelligence, Reimagined.">
+  <meta property="og:description" content="A new perspective on artificial intelligence.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #08080b;
+      --surface: #101015;
+      --surface-2: #15151d;
+      --text: #f6f5fa;
+      --muted: #92919e;
+      --accent: #a78bfa;
+      --accent-2: #7955e9;
+      --line: rgba(255,255,255,.09);
+      --container: 1200px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::selection {
+      background: #9b7aff;
+      color: white;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--container), 86%);
+      margin: auto;
+    }
+
+    /* BACKGROUND */
+
+    .ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .ambient::before {
+      content: "";
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      top: -400px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(119,77,235,.15), transparent 70%);
+    }
+
+    .ambient::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      right: -350px;
+      top: 45%;
+      background: radial-gradient(circle, rgba(91,60,180,.10), transparent 70%);
+    }
+
+    /* NAVIGATION */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      border-bottom: 1px solid transparent;
+      transition: .3s ease;
+    }
+
+    .navbar.scrolled {
+      background: rgba(8,8,11,.83);
+      backdrop-filter: blur(20px);
+      border-color: var(--line);
+    }
+
+    .nav-inner {
+      width: min(var(--container), 86%);
+      height: 82px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: Manrope, sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 5px;
+    }
+
+    .brand-symbol {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(167,139,250,.55);
+      border-radius: 10px;
+      color: var(--accent);
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    .brand span:last-child {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #aaa9b4;
+      font-size: 13px;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .nav-cta {
+      border: 1px solid rgba(167,139,250,.45);
+      padding: 12px 19px;
+      border-radius: 6px;
+      color: white !important;
+      transition: .25s;
+    }
+
+    .nav-cta:hover {
+      background: rgba(167,139,250,.13);
+      border-color: var(--accent);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 21px;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 850px;
+      padding: 180px 0 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 720px;
+      height: 480px;
+      top: 23%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse, rgba(121,85,233,.19), transparent 68%);
+      filter: blur(20px);
+      z-index: -1;
+      animation: breathe 8s ease-in-out infinite alternate;
+    }
+
+    @keyframes breathe {
+      from { opacity: .55; transform: translateX(-50%) scale(.9); }
+      to { opacity: 1; transform: translateX(-50%) scale(1.12); }
+    }
+
+    .hero-content {
+      width: min(950px, 88%);
+      margin: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 50px;
+      color: #c5b6f9;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 42px;
+      background: rgba(255,255,255,.025);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: #a78bfa;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #a78bfa;
+    }
+
+    .hero h1 {
+      font-family: Manrope, sans-serif;
+      font-size: clamp(60px, 9.3vw, 112px);
+      line-height: .99;
+      letter-spacing: -8px;
+      font-weight: 700;
+    }
+
+    .gradient-text {
+      background: linear-gradient(105deg,#fff 5%,#c7b5ff 48%,#8864f2 95%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 610px;
+      margin: 35px auto 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 42px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      min-height: 54px;
+      padding: 0 25px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .25s ease;
+    }
+
+    .button-primary {
+      background: #f4f0ff;
+      color: #111019;
+    }
+
+    .button-primary:hover {
+      background: white;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 40px rgba(167,139,250,.17);
+    }
+
+    .button-secondary {
+      border: 1px solid var(--line);
+      color: #e6e3ed;
+    }
+
+    .button-secondary:hover {
+      border-color: var(--accent);
+      background: rgba(167,139,250,.07);
+    }
+
+    .hero-note {
+      margin-top: 95px;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #777481;
+      text-transform: uppercase;
+    }
+
+    /* SECTION GENERAL */
+
+    .section {
+      padding: 130px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-label {
+      color: var(--accent);
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 25px;
+    }
+
+    .section-title {
+      max-width: 820px;
+      font-family: Manrope, sans-serif;
+      font-size: clamp(37px,5.2vw,65px);
+      line-height: 1.13;
+      letter-spacing: -3px;
+      font-weight: 600;
+    }
+
+    .section-description {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.95;
+      margin-top: 27px;
+    }
+
+    /* ABOUT */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      min-height: 390px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 50% 50%,rgba(128,91,244,.18),transparent 55%),
+        linear-gradient(145deg,#17141f,#0c0c11);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .orb {
+      width: 185px;
+      height: 185px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 34% 28%,#e2d6ff,#9874ee 23%,#49318d 55%,#171124 80%);
+      box-shadow:
+        0 0 70px rgba(141,103,241,.23),
+        inset -20px -20px 45px rgba(0,0,0,.55),
+        inset 8px 8px 30px rgba(255,255,255,.2);
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .orb::before {
+      content: "";
+      position: absolute;
+      inset: -30px;
+      border: 1px solid rgba(181,155,255,.23);
+      border-radius: 50%;
+      transform: rotate(-25deg) scaleY(.55);
+    }
+
+    .orb::after {
+      content: "";
+      position: absolute;
+      inset: -55px;
+      border: 1px solid rgba(181,155,255,.12);
+      border-radius: 50%;
+      transform: rotate(50deg) scaleY(.55);
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-17px); }
+    }
+
+    .visual-caption {
+      position: absolute;
+      bottom: 22px;
+      left: 25px;
+      color: #8e8b9c;
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    /* PRINCIPLES */
+
+    .principles {
+      background: linear-gradient(180deg,transparent,rgba(30,24,48,.23),transparent);
+    }
+
+    .principles-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 55px;
+    }
+
+    .principles-header .section-description {
+      max-width: 360px;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 36px 30px;
+      min-height: 290px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.008));
+      transition: .3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(167,139,250,.45);
+      background: linear-gradient(145deg,rgba(167,139,250,.09),rgba(255,255,255,.01));
+    }
+
+    .card-number {
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 3px;
+    }
+
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      margin-top: 35px;
+      border: 1px solid rgba(167,139,250,.25);
+      border-radius: 10px;
+      color: #c2adff;
+      font-size: 19px;
+    }
+
+    .card h3 {
+      margin-top: 23px;
+      font-family: Manrope,sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-top: 12px;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* VISION */
+
+    .vision {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vision::before {
+      content: "";
+      position: absolute;
+      width: 650px;
+      height: 350px;
+      left: 50%;
+      top: 35%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse,rgba(105,67,211,.14),transparent 70%);
+      pointer-events: none;
+    }
+
+    .vision .container {
+      position: relative;
+    }
+
+    .vision .section-title,
+    .vision .section-description {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .vision .section-description {
+      max-width: 620px;
+    }
+
+    .vision-mark {
+      display: inline-block;
+      margin-top: 55px;
+      color: #d0c3ff;
+      font-size: 15px;
+      letter-spacing: 5px;
+      padding: 18px 27px;
+      border: 1px solid rgba(167,139,250,.23);
+      border-radius: 6px;
+    }
+
+    /* CTA */
+
+    .closing {
+      padding: 95px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(110deg,rgba(116,76,226,.10),transparent 70%);
+    }
+
+    .closing-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .closing h2 {
+      font-family: Manrope,sans-serif;
+      font-size: clamp(32px,4vw,48px);
+      letter-spacing: -2px;
+    }
+
+    .closing p {
+      color: var(--muted);
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 45px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .footer-brand {
+      font-family: Manrope,sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: 4px;
+    }
+
+    .footer-brand span {
+      color: var(--accent);
+    }
+
+    .footer-copy {
+      color: #777582;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .footer-right {
+      color: #888592;
+      font-size: 11px;
+      text-align: right;
+      line-height: 1.8;
+    }
+
+    /* REVEAL ANIMATIONS */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .8s ease,transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:850px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 55px;
+      }
+
+      .about-visual {
+        min-height: 330px;
+      }
+
+      .principles-header {
+        display: block;
+      }
+
+      .principles-header .section-description {
+        margin-top: 20px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .closing-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media(max-width:650px) {
+      .container,.nav-inner {
+        width: 88%;
+      }
+
+      .nav-inner {
+        height: 72px;
+      }
+
+      .brand {
+        font-size: 21px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        padding: 25px 6%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 25px;
+        background: rgba(9,9,13,.97);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero {
+        min-height: 760px;
+        padding-top: 140px;
+      }
+
+      .hero h1 {
+        font-size: clamp(53px,12vw,78px);
+        letter-spacing: -4px;
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .hero-note {
+        margin-top: 75px;
+        font-size: 9px;
+      }
+
+      .section {
+        padding: 90px 0;
+      }
+
+      .section-title {
+        letter-spacing: -2px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 250px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-right {
+        text-align: left;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      *,*::before,*::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="ambient" aria-hidden="true"></div>
+
+<header class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="brand" aria-label="KEFI home">
+      <span class="brand-symbol">κ</span>
+      <span>KEFI<span>.</span></span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="navLinks">☰</button>
+
+    <nav aria-label="Main navigation">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#vision">Vision</a></li>
+        <li><a href="#contact" class="nav-cta">Get in touch ↗</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="eyebrow reveal">
+        Independent AI project
+      </div>
+
+      <h1 class="reveal">
+        Intelligence,<br>
+        <span class="gradient-text">Reimagined.</span>
+      </h1>
+
+      <p class="hero-description reveal">
+        A new perspective on artificial intelligence.
+        Building technology with purpose, expanding
+        possibilities and imagining what comes next.
+      </p>
+
+      <div class="hero-actions reveal">
+        <a href="#about" class="button button-primary">
+          Discover KEFI <span>↗</span>
+        </a>
+
+        <a href="#vision" class="button button-secondary">
+          Explore our vision
+        </a>
+      </div>
+
+      <div class="hero-note reveal">
+        KEFI — κέφι &nbsp; · &nbsp; Built around possibility
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+
+  <section class="section" id="about">
+    <div class="container about-grid">
+
+      <div class="reveal">
+        <div class="section-label">01 / ABOUT KEFI</div>
+
+        <h2 class="section-title">
+          A different way to think about intelligence.
+        </h2>
+
+        <p class="section-description">
+          KEFI is an independent AI-powered software project
+          exploring a new generation of intelligent digital
+          experiences.
+
+          Our ambition is to make advanced technology
+          more accessible, useful and meaningful.
+        </p>
+      </div>
+
+      <div class="about-visual reveal" aria-label="Abstract KEFI visual">
+        <div class="orb"></div>
+        <div class="visual-caption">EXPLORING NEW POSSIBILITIES</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+
+  <section class="section principles" id="principles">
+    <div class="container">
+
+      <div class="principles-header reveal">
+        <div>
+          <div class="section-label">02 / OUR PRINCIPLES</div>
+          <h2 class="section-title">
+            Built on ideas.<br>
+            Driven by possibility.
+          </h2>
+        </div>
+
+        <p class="section-description">
+          The principles shaping our approach to
+          technology and the future we want to build.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <article class="card reveal">
+          <div class="card-number">01 — INTELLIGENCE</div>
+          <div class="card-icon">✳</div>
+          <h3>Think beyond.</h3>
+          <p>
+            Exploring the potential of artificial
+            intelligence to unlock new ways of creating
+            and solving problems.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-number">02 — EXPERIENCE</div>
+          <div class="card-icon">◇</div>
+          <h3>Purposeful design.</h3>
+          <p>
+            Technology should feel clear, intuitive
+            and thoughtfully designed around people.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-number">03 — AMBITION</div>
+          <div class="card-icon">↗</div>
+          <h3>Think globally.</h3>
+          <p>
+            Building with a broad perspective and
+            an ambition to contribute to the digital future.
+          </p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+
+  <section class="section vision" id="vision">
+    <div class="container reveal">
+
+      <div class="section-label">03 / OUR VISION</div>
+
+      <h2 class="section-title">
+        The future isn't something we wait for.
+        It's something we build.
+      </h2>
+
+      <p class="section-description">
+        We believe intelligence can reshape how people
+        create, discover and accomplish more.
+        KEFI is at the beginning of that journey.
+      </p>
+
+      <div class="vision-mark">
+        κέφι — KEFI
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT / CLOSING -->
+
+  <section class="closing" id="contact">
+    <div class="container closing-inner">
+
+      <div class="reveal">
+        <h2>Something new is taking shape.</h2>
+        <p>
+          Follow the journey as KEFI develops.
+          This project is currently in development.
+        </p>
+      </div>
+
+      <a href="#about" class="button button-secondary reveal">
+        Explore KEFI ↗
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="container footer-inner">
+
+    <div>
+      <div class="footer-brand">KEFI<span>.</span></div>
+      <div class="footer-copy">
+        © 2026 KEFI. All rights reserved.
+      </div>
+    </div>
+
+    <div class="footer-right">
+      Intelligence, Reimagined.<br>
+      Independent project · In development
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  // NAVIGATION SCROLL EFFECT
+
+  const navbar = document.getElementById("navbar");
+
+  function updateNavbar() {
+    navbar.classList.toggle("scrolled", window.scrollY > 30);
+  }
+
+  window.addEventListener("scroll", updateNavbar, {
+    passive: true
+  });
+
+  updateNavbar();
+
+  // MOBILE MENU
+
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+
+  function closeMenu() {
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.textContent = "☰";
+  }
+
+  menuToggle.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeMenu();
+  });
+
+  // SCROLL REVEAL
+
+  const revealElements = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12
+  });
+
+  revealElements.forEach(element => {
+    observer.observe(element);
+  });
+</script>
+
+</body>
+</html>
